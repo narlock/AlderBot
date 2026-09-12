@@ -47,8 +47,11 @@ class Top():
 
             if member is not None and index == 0:
                 # Add the member's avatar as the embed thumbnail
-                avatar_url = self.get_top_url(member)
-                embed.set_thumbnail(url=f'{avatar_url}')
+                try:
+                    avatar_url = self.get_top_url(member)
+                    embed.set_thumbnail(url=f'{avatar_url}')
+                except Exception as e:
+                    embed.set_thumbnail(url=cfg.DISCORD_ALDER_IMAGE_URL)
 
             # Convert user month stime to hours
             month_time = user['stime'] // 3600
